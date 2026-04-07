@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport to Pasja</title>
+    <style>
+        /* Podstawowe style */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Nagłówek */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #adff2f; /* Neonowa zieleń */
+        }
+
+        .scroll-indicator {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* Sekcje z treścią */
+        section {
+            padding: 100px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #adff2f;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #adff2f;
+            font-size: 2rem;
+        }
+
+        /* Animacja strzałki */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Przekraczaj Granice</h1>
+        <p>Twoja droga do mistrzostwa zaczyna się tutaj.</p>
+        <div class="scroll-indicator">↓ Przewiń w dół</div>
+    </header>
+
+    <section id="motivation">
+        <div class="card">
+            <h2>01. Dyscyplina</h2>
+            <p>Sport to nie tylko wysiłek fizyczny, to przede wszystkim hartowanie ducha. Każdy trening przybliża Cię do celu, którego inni tylko zazdroszczą. Nie szukaj wymówek, szukaj możliwości.</p>
+        </div>
+    </section>
+
+    <section id="training">
+        <div class="card">
+            <h2>02. Trening</h2>
+            <p>Niezależnie od tego, czy Twoją pasją jest bieganie, podnoszenie ciężarów czy boks – kluczem jest regularność. Twoje ciało może więcej, niż podpowiada Ci umysł.</p>
+        </div>
+    </section>
+
+    <section id="recovery">
+        <div class="card">
+            <h2>03. Regeneracja</h2>
+            <p>Pamiętaj, że mięśnie rosną, gdy odpoczywasz. Szanuj swój sen i dietę tak samo mocno, jak sesję na siłowni. To paliwo dla Twoich sukcesów.</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Sportowa Strona. Stworzono z pasją.
+    </footer>
+
+    <script>
+        // Prosty skrypt do animacji pojawiania się elementów przy skrolowaniu
+        const sections = document.querySelectorAll('section');
+
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
