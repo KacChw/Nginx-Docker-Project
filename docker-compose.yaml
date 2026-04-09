@@ -5,16 +5,16 @@ services:
     environment:
       - APP_NAME=App1
     ports: 
-      - 3003:3000
+      - "3003:3003"
   app2:
     build: .
     environment:
       - APP_NAME=App2
     ports: 
-      - 3004:3000
+      - "3004:3003"
   app3:
     build: .
     environment:
       - APP_NAME=App3
     ports: 
-      - 3005:3000
+      - "3005:3003"

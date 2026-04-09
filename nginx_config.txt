@@ -1,0 +1,27 @@
+worker_processes 1; #  controlls how many pararel processes, the more the more nginx can handle (often equals to cpu cores)
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include mime.types;
+
+    upstream nodejs_cluster { 
+        least_conn; # Algorytm wysyłający ruch tam, gdzie jest najmniej połączeń
+        server 127.0.0.1:3003;
+        server 127.0.0.1:3004;
+        server 127.0.0.1:3005;
+    }
+
+    server {
+        listen 8080; 
+        server_name localhost;
+
+        location / {
+            proxy_pass http://nodejs_cluster;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+}
